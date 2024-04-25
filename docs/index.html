@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Statistics</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div id="search-container">
+    <input type="text" id="player-search-box" placeholder="Search players...">
+    <input type="text" id="stat-search-box" placeholder="Search stats...">
+</div>
+
+<div id="chart-container">
+    <canvas id="player-stats-chart"></canvas>
+</div>
+
+<div id="players-table-container">
+    <table id="players-table">
+        <!-- Players table gets populated here -->
+    </table>
+    <table id="stats-table">
+        <!-- Stats table will be populated here -->
+    </table>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
