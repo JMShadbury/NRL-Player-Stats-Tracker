@@ -15,6 +15,15 @@ async function fetchStatsLegend() {
     }
 }
 
+function getSelectedStats() {
+    const selectedStats = [];
+    const checkboxes = document.querySelectorAll('#stats-table input[type="checkbox"]:checked');
+    checkboxes.forEach(checkbox => {
+        selectedStats.push(checkbox.value);
+    });
+    return selectedStats; 
+}
+
 // Function to initialize the table with player data
 function initializeTable(data) {
     const table = document.getElementById('players-table');
@@ -40,7 +49,8 @@ function initializeTable(data) {
             console.log('Selected Player ID:', playerId); // Log the selected player's ID
             const selectedPlayer = data.find(player => player.id === playerId);
             console.log('Selected Player Data:', selectedPlayer); // Log the selected player's data
-            updateChart(selectedPlayer);
+            const selectedStats = getSelectedStats(); // Get the selected stats
+            updateChart(selectedPlayer, selectedStats); // Update the chart with selected player and stats
         };
     });
 }
@@ -64,6 +74,12 @@ function initializeStatsTable(data) {
         const cell2 = row.insertCell();
         cell1.textContent = acronym;
         cell2.textContent = name;
+        
+        // Add checkbox for each stat
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.value = acronym;
+        cell1.appendChild(checkbox);
     });
 }
 
@@ -121,7 +137,10 @@ function updateChartWithSelectedStats() {
 }
 
 // Event listener for stat checkbox changes
-document.getElementById('stats-table').addEventListener('change', updateChartWithSelectedStats);
+document.getElementById('stats-table').addEventListener('change', function() {
+    updateChartWithSelectedStats();
+});
+
 
 
 // Function to filter players based on search input
